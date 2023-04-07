@@ -1,0 +1,520 @@
+{
+	"p4": {
+		"mesh_label": "Grass",
+		"mesh_rotation": 0,
+		"constrain_to": "",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p4",
+				"p8",
+				"p16",
+				"p19",
+			],
+			[
+				"p4",
+				"p9",
+				"p16",
+				"p17",
+			],
+			[
+				"p4",
+				"p10",
+				"p17",
+				"p18",
+				"p20",
+			],
+			[
+				"p4",
+				"p11",
+				"p18",
+				"p19",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p8": {
+		"mesh_label": "Slope",
+		"mesh_rotation": 0,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p-1"
+			],
+			[
+				"p8",
+				"p12",
+				"p19",
+			],
+			[
+				"p4",
+				"p10",
+				"p17",
+				"p18",
+				"p20",
+			],
+			[
+				"p8",
+				"p15",
+				"p16",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p9": {
+		"mesh_label": "Slope",
+		"mesh_rotation": 1,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p9",
+				"p12",
+				"p17",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p9",
+				"p13",
+				"p16",
+			],
+			[
+				"p4",
+				"p11",
+				"p18",
+				"p19",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p10": {
+		"mesh_label": "Slope",
+		"mesh_rotation": 2,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p4",
+				"p8",
+				"p16",
+				"p19",
+			],
+			[
+				"p10",
+				"p13",
+				"p18",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p10",
+				"p14",
+				"p17",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p11": {
+		"mesh_label": "Slope",
+		"mesh_rotation": 3,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p11",
+				"p15",
+				"p18",
+			],
+			[
+				"p4",
+				"p9",
+				"p16",
+				"p17",
+			],
+			[
+				"p11",
+				"p14",
+				"p19",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p12": {
+		"mesh_label": "Corner",
+		"mesh_rotation": 0,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p9",
+				"p13",
+				"p16",
+			],
+			[
+				"p8",
+				"p15",
+				"p16",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p13": {
+		"mesh_label": "Corner",
+		"mesh_rotation": 1,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p9",
+				"p12",
+				"p17",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p10",
+				"p14",
+				"p17",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p14": {
+		"mesh_label": "Corner",
+		"mesh_rotation": 2,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p11",
+				"p15",
+				"p18",
+			],
+			[
+				"p10",
+				"p13",
+				"p18",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p15": {
+		"mesh_label": "Corner",
+		"mesh_rotation": 3,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p-1"
+			],
+			[
+				"p8",
+				"p12",
+				"p19",
+			],
+			[
+				"p11",
+				"p14",
+				"p19",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p16": {
+		"mesh_label": "InCorner",
+		"mesh_rotation": 0,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p9",
+				"p12",
+				"p17",
+			],
+			[
+				"p8",
+				"p12",
+				"p19",
+			],
+			[
+				"p4",
+				"p10",
+				"p17",
+				"p18",
+				"p20",
+			],
+			[
+				"p4",
+				"p11",
+				"p18",
+				"p19",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p17": {
+		"mesh_label": "InCorner",
+		"mesh_rotation": 1,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p4",
+				"p8",
+				"p16",
+				"p19"
+			],
+			[
+				"p10",
+				"p13",
+				"p18"
+			],
+			[
+				"p9",
+				"p13",
+				"p16"
+			],
+			[
+				"p4",
+				"p11",
+				"p18",
+				"p19"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p18": {
+		"mesh_label": "InCorner",
+		"mesh_rotation": 2,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p4",
+				"p8",
+				"p16",
+				"p19",
+			],
+			[
+				"p4",
+				"p9",
+				"p16",
+				"p17",
+			],
+			[
+				"p11",
+				"p14",
+				"p19",
+			],
+			[
+				"p10",
+				"p14",
+				"p17",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p19": {
+		"mesh_label": "InCorner",
+		"mesh_rotation": 3,
+		"constrain_to": "bot",
+		"constrain_from": "",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p11",
+				"p15",
+				"p18",
+			],
+			[
+				"p4",
+				"p9",
+				"p16",
+				"p17",
+			],
+			[
+				"p4",
+				"p10",
+				"p17",
+				"p18",
+				"p20",
+			],
+			[
+				"p8",
+				"p15",
+				"p16",
+			],
+			[
+				"p-1"
+			],
+			[
+				"p-1"
+			]
+		]
+	},
+	"p-1": {
+		"mesh_label": "Blank",
+		"mesh_rotation": 0,
+		"constrain_to": "-1",
+		"constrain_from": "-1",
+		"mesh_weight": 1,
+		"mesh_neighbours": [
+			[
+				"p10",
+				"p13",
+				"p14",
+				"p20",
+				"p-1"
+			],
+			[
+				"p11",
+				"p14",
+				"p15",
+				"p-1"
+			],
+			[
+				"p8",
+				"p12",
+				"p15",
+				"p-1"
+			],
+			[
+				"p9",
+				"p12",
+				"p13",
+				"p-1"
+			],
+			[
+				"p4",
+				"p8",
+				"p9",
+				"p10",
+				"p11",
+				"p12",
+				"p13",
+				"p14",
+				"p15",
+				"p16",
+				"p17",
+				"p18",
+				"p19",
+				"p20",
+				"p-1"
+			],
+			[
+				"p4",
+				"p8",
+				"p9",
+				"p10",
+				"p11",
+				"p12",
+				"p13",
+				"p14",
+				"p15",
+				"p16",
+				"p17",
+				"p18",
+				"p19",
+				"p-1"
+			]
+		]
+	}
+}

@@ -1,0 +1,145 @@
+[gd_scene load_steps=16 format=3 uid="uid://cxaht4el38uy0"]
+
+[ext_resource type="Script" path="res://Scripts/WFC-World.gd" id="1_pxpss"]
+[ext_resource type="Shader" uid="uid://4vroejnqchw" path="res://Shaders/Water.tres" id="2_cfu1s"]
+[ext_resource type="Script" path="res://Scripts/CameraRot.gd" id="3_hb0jg"]
+[ext_resource type="Texture2D" uid="uid://bmah2attg6w5g" path="res://icon.svg" id="5_sis46"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hib6o"]
+render_priority = 0
+shader = ExtResource("2_cfu1s")
+shader_parameter/ColorParameter = Color(0, 0.521569, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3g4s3"]
+material = SubResource("ShaderMaterial_hib6o")
+size = Vector2(70, 70)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2pruy"]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_gempu"]
+parameter_name = "PixelAmount"
+hint = 2
+min = 256.0
+max = 512.0
+step = 2.0
+default_value_enabled = true
+default_value = 375.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_wba3a"]
+output_port_for_preview = 0
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_jcsa1"]
+output_port_for_preview = 0
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+function = 17
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_hxfuj"]
+output_port_for_preview = 0
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 3
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_gsw8k"]
+source = 1
+
+[sub_resource type="VisualShader" id="VisualShader_vdcdr"]
+code = "shader_type canvas_item;
+uniform float PixelAmount : hint_range(256, 512, 2) = 375;
+uniform sampler2D screen_tex_frg_7 : hint_screen_texture;
+
+
+
+void fragment() {
+// Input:2
+	vec2 n_out2p0 = UV;
+
+
+// FloatParameter:3
+	float n_out3p0 = PixelAmount;
+
+
+// VectorOp:4
+	vec2 n_out4p0 = n_out2p0 * vec2(n_out3p0);
+
+
+// VectorFunc:5
+	vec2 n_out5p0 = floor(n_out4p0);
+
+
+// VectorOp:6
+	vec2 n_out6p0 = n_out5p0 / vec2(n_out3p0);
+
+
+	vec4 n_out7p0;
+// Texture2D:7
+	n_out7p0 = texture(screen_tex_frg_7, n_out6p0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out7p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-228.465, -23.6132)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1900, 200)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_2pruy")
+nodes/fragment/2/position = Vector2(-680, -180)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_gempu")
+nodes/fragment/3/position = Vector2(-620, 320)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_wba3a")
+nodes/fragment/4/position = Vector2(260, -40)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorFunc_jcsa1")
+nodes/fragment/5/position = Vector2(620, -20)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorOp_hxfuj")
+nodes/fragment/6/position = Vector2(1060, 180)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_gsw8k")
+nodes/fragment/7/position = Vector2(1480, 180)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 3, 0, 4, 1, 4, 0, 5, 0, 5, 0, 6, 0, 3, 0, 6, 1, 6, 0, 7, 0, 7, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ya5l"]
+shader = SubResource("VisualShader_vdcdr")
+shader_parameter/PixelAmount = 375.0
+
+[sub_resource type="Environment" id="Environment_7n7gy"]
+background_mode = 1
+background_color = Color(0.882353, 0.556863, 0.658824, 1)
+
+[node name="WFC-World" type="Node3D"]
+script = ExtResource("1_pxpss")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.174387, -0.740723, 0.648783, 0.192275, 0.671811, 0.715333, -0.965722, 0, 0.259578, 0, 0, 0)
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+visible = false
+mesh = SubResource("PlaneMesh_3g4s3")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
+script = ExtResource("3_hb0jg")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.547592, 0.836745, 0, -0.836745, 0.547592, 0, 9, 8.5)
+fov = 70.0
+far = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_1ya5l")
+position = Vector2(576, 325)
+scale = Vector2(8.95312, 5.09375)
+texture = ExtResource("5_sis46")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7n7gy")

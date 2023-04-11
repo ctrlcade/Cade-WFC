@@ -36,11 +36,11 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/make_streamable": "",
 "save_to_file/path": "res://Meshes/InCorner.res"
 },
-"WFC-Chunks_Cube002": {
+"WFC-Chunks_Cube003": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
@@ -48,7 +48,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://Meshes/Grass.res"
+"save_to_file/path": "res://Meshes/TopSlope.res"
 },
 "WFC-Chunks_Cube004": {
 "generate/lightmap_uv": 0,
@@ -56,9 +56,19 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/make_streamable": "",
 "save_to_file/path": "res://Meshes/Slope.res"
+},
+"WFC-Chunks_Cube005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://Meshes/TopCorner.res"
 },
 "WFC-Chunks_Cube009": {
 "generate/lightmap_uv": 0,
@@ -66,7 +76,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/make_streamable": "",
 "save_to_file/path": "res://Meshes/Corner.res"
 }

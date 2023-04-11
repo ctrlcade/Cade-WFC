@@ -5,6 +5,7 @@ const init_mesh = preload("res://Scenes/Mesh.tscn")
 
 var worldseed = randi()
 
+var rules = WFCRules.new()
 var wfc : WFC
 var meshes : Array
 var coords : Vector3
@@ -20,7 +21,7 @@ func _process(_delta):
 
 func generate():
 	wfc = WFC.new()
-	wfc.init(worldsize, load_mesh_data())
+	wfc.init(worldsize, rules.ruleset)
 	apply_custom_constraints()
 	while not wfc.collapsed():
 		wfc.iterate()
@@ -36,13 +37,6 @@ func resetworld():
 
 
 func apply_custom_constraints():
-	# This function isn't covered in the video but what we do here is basically
-	# go over the wavefunction and remove certain modules from specific places
-	# for example in my Blender scene I've marked all of the beach tiles with
-	# an attribute called "constrain_to" with the value "bot". This is recalled
-	# in this function, and all tiles with this attribute and value are removed
-	# from cells that are not at the bottom i.e., if y > 0: constrain.
-	var add_to_stack = []
 	
 	for x in range(worldsize.x):
 		for y in range(worldsize.y):
@@ -52,7 +46,7 @@ func apply_custom_constraints():
 				if y == worldsize.y - 1:  # constrain top layer to not contain any uncapped prototypes
 					for proto in protos.duplicate():
 						var neighs = protos[proto][WFC.MESH_NEIGHBOURS][WFC.pZ]
-						if not "p-1" in neighs:
+						if not "Blank" in neighs:
 							protos.erase(proto)
 							if not coords in wfc.stack:
 								wfc.stack.append(coords)
@@ -74,47 +68,40 @@ func apply_custom_constraints():
 					for proto in protos.duplicate():
 						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.nZ]
 						var custom_constraint = protos[proto][WFC.CONSTRAIN_FROM]
-						if (not "p-1" in neighs) or (custom_constraint == WFC.CONSTRAINT_BOTTOM):
+						if (not "Blank" in neighs) or (custom_constraint == WFC.CONSTRAINT_BOTTOM):
 							protos.erase(proto)
 							if not coords in wfc.stack:
 								wfc.stack.append(coords)
 				if x == worldsize.x - 1: # constrain +x
 					for proto in protos.duplicate():
 						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.pX]
-						if not "p-1" in neighs:
+						if not "Blank" in neighs:
 							protos.erase(proto)
 							if not coords in wfc.stack:
 								wfc.stack.append(coords)
 				if x == 0: # constrain -x
 					for proto in protos.duplicate():
 						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.nX]
-						if not "p-1" in neighs:
+						if not "Blank" in neighs:
 							protos.erase(proto)
 							if not coords in wfc.stack:
 								wfc.stack.append(coords)
 				if z == worldsize.z - 1: # constrain +z
 					for proto in protos.duplicate():
 						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.nY]
-						if not "p-1" in neighs:
+						if not "Blank" in neighs:
 							protos.erase(proto)
 							if not coords in wfc.stack:
 								wfc.stack.append(coords)
 				if z == 0: # constrain -z
 					for proto in protos.duplicate():
 						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.pY]
-						if not "p-1" in neighs:
+						if not "Blank" in neighs:
 							protos.erase(proto)
 							if not coords in wfc.stack:
 								wfc.stack.append(coords)
 
 	wfc.propagate(false)
-	
-func load_mesh_data():
-	var jsonfile = FileAccess.open("res://mesh_data.json", FileAccess.READ)
-	var parser = JSON.new()
-	var _parse_err = parser.parse(jsonfile.get_as_text())
-	return parser.get_data()
-	
 	
 func display_wavefunction():
 	for x in range(worldsize.x):

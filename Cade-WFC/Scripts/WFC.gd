@@ -132,7 +132,6 @@ func propagate(coordinates):
 			for chunk in chunks_available:
 				if not chunk in neighbours_available:
 					constrain(other_coordinates, chunk)
-#					wavefunction[other_coordinates.x][other_coordinates.y][other_coordinates.z].erase(chunk)
 					if not other_coordinates in stack:
 						stack.append(other_coordinates)
 		

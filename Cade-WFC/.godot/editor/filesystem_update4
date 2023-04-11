@@ -1,0 +1,8 @@
+res://Scenes/WFC-World.tscn
+res://Materials/Grass.material
+res://Materials/Beach.material
+res://Meshes/Corner.res
+res://Shaders/Water.tres
+res://Scripts/WFC-World.gd
+res://Scripts/WFC-Rules.gd
+res://Scenes/Mesh.tscn

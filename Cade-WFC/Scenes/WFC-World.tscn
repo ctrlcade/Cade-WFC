@@ -1,18 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxaht4el38uy0"]
+[gd_scene load_steps=18 format=3 uid="uid://cxaht4el38uy0"]
 
 [ext_resource type="Script" path="res://Scripts/WFC-World.gd" id="1_pxpss"]
-[ext_resource type="Shader" uid="uid://4vroejnqchw" path="res://Shaders/Water.tres" id="2_cfu1s"]
+[ext_resource type="Shader" uid="uid://b2qi6l4gw47mm" path="res://Shaders/Water.tres" id="2_cfu1s"]
 [ext_resource type="Script" path="res://Scripts/CameraRot.gd" id="3_hb0jg"]
+[ext_resource type="Script" path="res://Scripts/FPS-Count.gd" id="5_jolt1"]
 [ext_resource type="Texture2D" uid="uid://bmah2attg6w5g" path="res://icon.svg" id="5_sis46"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hib6o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnu6r"]
 render_priority = 0
 shader = ExtResource("2_cfu1s")
-shader_parameter/ColorParameter = Color(0, 0.521569, 1, 1)
+shader_parameter/ColorParameter = Color(0.176471, 0.560784, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3g4s3"]
-material = SubResource("ShaderMaterial_hib6o")
-size = Vector2(70, 70)
+material = SubResource("ShaderMaterial_pnu6r")
+size = Vector2(85, 85)
 subdivide_width = 10
 subdivide_depth = 10
 
@@ -115,6 +116,9 @@ shader_parameter/PixelAmount = 375.0
 background_mode = 1
 background_color = Color(0.882353, 0.556863, 0.658824, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_4stdv"]
+font_size = 32
+
 [node name="WFC-World" type="Node3D"]
 script = ExtResource("1_pxpss")
 
@@ -122,7 +126,7 @@ script = ExtResource("1_pxpss")
 transform = Transform3D(0.174387, -0.740723, 0.648783, 0.192275, 0.671811, 0.715333, -0.965722, 0, 0.259578, 0, 0, 0)
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 visible = false
 mesh = SubResource("PlaneMesh_3g4s3")
 
@@ -136,6 +140,7 @@ fov = 70.0
 far = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_1ya5l")
 position = Vector2(576, 325)
 scale = Vector2(8.95312, 5.09375)
@@ -143,3 +148,11 @@ texture = ExtResource("5_sis46")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7n7gy")
+
+[node name="FPS" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 25.0
+label_settings = SubResource("LabelSettings_4stdv")
+script = ExtResource("5_jolt1")

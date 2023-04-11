@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://fqf4eiwvp7j4"]
+[gd_scene load_steps=3 format=3 uid="uid://cqpftnf8vs6l8"]
 
 [ext_resource type="Script" path="res://Scripts/Mesh.gd" id="1_se1rw"]
 [ext_resource type="ArrayMesh" uid="uid://d2d1ccltgrjpu" path="res://Meshes/Corner.res" id="2_751s5"]

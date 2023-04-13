@@ -1,8 +1,13 @@
-res://Scenes/WFC-World.tscn
+res://Scenes/Mesh.tscn
 res://Materials/Grass.material
 res://Materials/Beach.material
 res://Meshes/Corner.res
 res://Shaders/Water.tres
+res://Scenes/WFC-World.tscn
+res://Meshes/Boat.res
+res://Scripts/Boat.gd
+res://Scripts/FPS-Count.gd
 res://Scripts/WFC-World.gd
 res://Scripts/WFC-Rules.gd
-res://Scenes/Mesh.tscn
+res://Scripts/WFC.gd
+res://Scripts/CameraRot.gd

@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqpftnf8vs6l8"]
+[gd_scene load_steps=4 format=3 uid="uid://cqpftnf8vs6l8"]
 
 [ext_resource type="Script" path="res://Scripts/Mesh.gd" id="1_se1rw"]
 [ext_resource type="ArrayMesh" uid="uid://d2d1ccltgrjpu" path="res://Meshes/Corner.res" id="2_751s5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iwasj"]
 
 [node name="Mesh" type="Node3D"]
 script = ExtResource("1_se1rw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_751s5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+shape = SubResource("BoxShape3D_iwasj")

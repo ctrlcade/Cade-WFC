@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://cxaht4el38uy0"]
+[gd_scene load_steps=21 format=3 uid="uid://cxaht4el38uy0"]
 
 [ext_resource type="Script" path="res://Scripts/WFC-World.gd" id="1_pxpss"]
 [ext_resource type="Shader" uid="uid://b2qi6l4gw47mm" path="res://Shaders/Water.tres" id="2_cfu1s"]
 [ext_resource type="Script" path="res://Scripts/CameraRot.gd" id="3_hb0jg"]
 [ext_resource type="Script" path="res://Scripts/FPS-Count.gd" id="5_jolt1"]
 [ext_resource type="Texture2D" uid="uid://bmah2attg6w5g" path="res://icon.svg" id="5_sis46"]
+[ext_resource type="Script" path="res://Scripts/Boat.gd" id="6_o0b40"]
+[ext_resource type="ArrayMesh" uid="uid://b25ry0b45mxbt" path="res://Meshes/Boat.res" id="7_swb63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pnu6r"]
 render_priority = 0
@@ -119,27 +121,29 @@ background_color = Color(0.882353, 0.556863, 0.658824, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_4stdv"]
 font_size = 32
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_uovxv"]
+
 [node name="WFC-World" type="Node3D"]
 script = ExtResource("1_pxpss")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.174387, -0.740723, 0.648783, 0.192275, 0.671811, 0.715333, -0.965722, 0, 0.259578, 0, 0, 0)
 
 [node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
-visible = false
 mesh = SubResource("PlaneMesh_3g4s3")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="World" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
 script = ExtResource("3_hb0jg")
 
-[node name="Camera3D" type="Camera3D" parent="Node3D"]
+[node name="Camera3D" type="Camera3D" parent="World"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.547592, 0.836745, 0, -0.836745, 0.547592, 0, 9, 8.5)
 fov = 70.0
 far = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PixelOverlay" type="Sprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_1ya5l")
 position = Vector2(576, 325)
@@ -149,10 +153,26 @@ texture = ExtResource("5_sis46")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7n7gy")
 
-[node name="FPS" type="Label" parent="."]
+[node name="FPS_Count" type="Label" parent="."]
 offset_left = 4.0
 offset_top = 2.0
 offset_right = 44.0
 offset_bottom = 25.0
 label_settings = SubResource("LabelSettings_4stdv")
 script = ExtResource("5_jolt1")
+
+[node name="Boat" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 5)
+mass = 0.25
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 5.0
+script = ExtResource("6_o0b40")
+
+[node name="BoatMesh" type="MeshInstance3D" parent="Boat"]
+transform = Transform3D(-0.321394, 0, 0.383022, 0, 0.5, 0, -0.383022, 0, -0.321394, 0, 0, 0)
+mesh = ExtResource("7_swb63")
+
+[node name="BoatCollider" type="CollisionShape3D" parent="Boat"]
+transform = Transform3D(-0.385672, 0, 0.459627, 0, 0.6, 0, -0.459627, 0, -0.385672, 0, 0, 0)
+shape = SubResource("SphereShape3D_uovxv")

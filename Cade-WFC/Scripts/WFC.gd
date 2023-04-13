@@ -1,15 +1,20 @@
 extends Node
 class_name WFC
 
+
+# constants for mesh properties
 const MESH_LABEL = "mesh_label"
 const MESH_ROTATION = "mesh_rotation"
 const MESH_NEIGHBOURS = "mesh_neighbours"
 const MESH_WEIGHT = "mesh_weight" 
+
+# constants for constraint properties
 const CONSTRAIN_TO = "constrain_to"
 const CONSTRAIN_FROM = "constrain_from"
 const CONSTRAINT_BOTTOM = "bot"
 const CONSTRAINT_TOP = "top"
 
+# constants for directions
 const pX = 0
 const pY = 1
 const nX = 2
@@ -26,11 +31,13 @@ const direction_to_index = {
 	Vector3.DOWN : 5
 }
 
+# wavefunction, world size, and propagation stack variables
 var wavefunction : Array
 var size : Vector3
 var stack : Array
 
-func init(worldsize, meshes):
+# initialise the wave function with given world size and meshes
+func init(worldsize : Vector3, meshes : Dictionary) -> void:
 	size = worldsize
 	for _x in range(size.x):
 		var y = []
@@ -41,7 +48,9 @@ func init(worldsize, meshes):
 			y.append(z)
 		wavefunction.append(y)
 
-func collapsed():
+
+# check if the wave function has collapsed (all cells have a single possible state)
+func collapsed() -> bool:
 	for x in wavefunction:
 		for y in x:
 			for z in y:
@@ -49,10 +58,12 @@ func collapsed():
 					return false
 	return true
 
-func available_chunks(coordinates):
+# get the available chunks at the specified coordinates
+func available_chunks(coordinates : Vector3) -> Dictionary:
 	return wavefunction[coordinates.x][coordinates.y][coordinates.z]
 	
-func get_neighbours(coordinates, direction):
+# get valid neighbours for the specified chunk at the corresponding coordinates and direction
+func get_neighbours(coordinates : Vector3, direction : Vector3) -> Array:
 	var valid_neighbours = []
 	var meshes = available_chunks(coordinates)
 	for mesh in meshes:
@@ -62,12 +73,14 @@ func get_neighbours(coordinates, direction):
 				valid_neighbours.append(neighbour)
 	return valid_neighbours
 	
-func collapse_chunk(coordinates):
+# collapse chunk at the specified coordinates
+func collapse_chunk(coordinates : Vector3) -> void:
 	var mesh_selection = wavefunction[coordinates.x][coordinates.y][coordinates.z]
 	var selection = weighted_chunk(mesh_selection)
 	wavefunction[coordinates.x][coordinates.y][coordinates.z] = {selection : mesh_selection[selection]}
 	
-func weighted_chunk(meshes):
+# choose chunk based on weight
+func weighted_chunk(meshes : Dictionary) -> String:
 	var mesh_weights = {}
 	for mesh in meshes:
 		var weight = meshes[mesh][MESH_WEIGHT]
@@ -77,15 +90,17 @@ func weighted_chunk(meshes):
 	weight_list.sort()
 	return mesh_weights[weight_list[-1]]
 	
-func constrain(coordinates, mesh):
+# remove specified mesh from the wavefunction at specified coordinates
+func constrain(coordinates : Vector3, mesh : String) -> void:
 	wavefunction[coordinates.x][coordinates.y][coordinates.z].erase(mesh)
 
-func get_entropy(coordinates):
+# get entropy (num of possible states) at the specified coordinates
+func get_entropy(coordinates : Vector3) -> float:
 	return len(wavefunction[coordinates.x][coordinates.y][coordinates.z])
 
-
-func get_min_entropy_coords():
-	var min_entropy
+# get the coordinates with the lowest entropy
+func get_min_entropy_coords() -> Vector3:
+	var min_entropy = INF
 	var coords
 	for x in range(size.x):
 		for y in range(size.y):
@@ -93,30 +108,19 @@ func get_min_entropy_coords():
 				var entropy = get_entropy(Vector3(x, y, z))
 				if entropy > 1:
 					entropy += randf_range(-0.1, 0.1)
-					
-					if not min_entropy:
-						min_entropy = entropy
-						coords = Vector3(x, y, z)
-					elif entropy < min_entropy:
+					if entropy < min_entropy:
 						min_entropy = entropy
 						coords = Vector3(x, y, z)
 	return coords
 
-
-#func entropy():
-#	for x in range(size.x):
-#		for y in range(size.y):
-#			for z in range(size.z):
-#				if len(wavefunction[x][y][z]) > 1:
-#					return Vector3(x, y, z)
-
-func iterate():
-#	var coords = entropy()
+# iterate through the generation process
+func iterate() -> void:
 	var coords = get_min_entropy_coords()
 	collapse_chunk(coords)
 	propagate(coords)
 	
-func propagate(coordinates):
+# propagate constraints throughout the wavefunction
+func propagate(coordinates : Vector3 = Vector3.ZERO) -> void:
 	if coordinates:
 		stack.append(coordinates)
 	while !stack.is_empty():
@@ -135,15 +139,16 @@ func propagate(coordinates):
 					if not other_coordinates in stack:
 						stack.append(other_coordinates)
 		
-func valid_directions(coordinates):
+# get valid directions based on the current coordinates
+func valid_directions(coordinates : Vector3) -> Array:
 	var dirs = []
 	
 	if coordinates.x > 0: dirs.append(Vector3.LEFT)
-	if coordinates.x < size.x-1: dirs.append(Vector3.RIGHT)
+	if coordinates.x < size.x - 1: dirs.append(Vector3.RIGHT)
 	if coordinates.y > 0: dirs.append(Vector3.DOWN)
-	if coordinates.y < size.y-1: dirs.append(Vector3.UP)
+	if coordinates.y < size.y - 1: dirs.append(Vector3.UP)
 	if coordinates.z > 0: dirs.append(Vector3.FORWARD)
-	if coordinates.z < size.z-1: dirs.append(Vector3.BACK)
+	if coordinates.z < size.z - 1: dirs.append(Vector3.BACK)
 	
 	return dirs
 

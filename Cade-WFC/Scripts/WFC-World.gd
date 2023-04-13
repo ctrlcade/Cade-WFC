@@ -3,23 +3,22 @@ extends Node3D
 const worldsize = Vector3(8, 1, 8)
 const init_mesh = preload("res://Scenes/Mesh.tscn")
 
-var worldseed = randi()
-
 var rules = WFCRules.new()
 var wfc : WFC
-var meshes : Array
-var coords : Vector3
+var meshes : Array = []
 
+# generate wave function collapse world at startup
 func _ready():
-	randomize()
 	generate()
 	
-func _process(_delta):
-	if(Input.is_action_just_pressed("ui_accept")):
-		resetworld()
+# check for input to regenerate the world during runtime, SPACEBAR to regen
+func _process(_delta : float) -> void:
+	if(Input.is_action_just_pressed("generate_world")):
+		reset_world()
 		generate()
 
-func generate():
+# generate the wave function collapse world
+func generate() -> void:
 	wfc = WFC.new()
 	wfc.init(worldsize, rules.ruleset)
 	apply_custom_constraints()
@@ -27,96 +26,65 @@ func generate():
 		wfc.iterate()
 	display_wavefunction()
 	if len(meshes) == 0:
-		worldseed += 1
 		generate()
 
-func resetworld():
+# reset world by clearing existing meshes
+func reset_world() -> void:
 	for mesh in meshes:
 		mesh.queue_free()
 	meshes = []
 
-
-func apply_custom_constraints():
+# apply custom constraints to the wave function collapse
+func apply_custom_constraints() -> void:
 	
 	for x in range(worldsize.x):
 		for y in range(worldsize.y):
 			for z in range(worldsize.z):
-				coords = Vector3(x, y, z)
+				var coords = Vector3(x, y, z)
 				var protos = wfc.available_chunks(coords)
-				if y == worldsize.y - 1:  # constrain top layer to not contain any uncapped prototypes
-					for proto in protos.duplicate():
-						var neighs = protos[proto][WFC.MESH_NEIGHBOURS][WFC.pZ]
-						if not "Blank" in neighs:
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
-				if y > 0:  # everything other than the bottom
-					for proto in protos.duplicate():
-						var custom_constraint = protos[proto][WFC.CONSTRAIN_TO]
-						if custom_constraint == WFC.CONSTRAINT_BOTTOM:
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
-				if y < worldsize.y - 1:  # everything other than the top
-					for proto in protos.duplicate():
-						var custom_constraint = protos[proto][WFC.CONSTRAIN_TO]
-						if custom_constraint == WFC.CONSTRAINT_TOP:
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
-				if y == 0:  # constrain bottom layer so we don't start with any top-cliff parts at the bottom
-					for proto in protos.duplicate():
-						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.nZ]
-						var custom_constraint = protos[proto][WFC.CONSTRAIN_FROM]
-						if (not "Blank" in neighs) or (custom_constraint == WFC.CONSTRAINT_BOTTOM):
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
-				if x == worldsize.x - 1: # constrain +x
-					for proto in protos.duplicate():
-						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.pX]
-						if not "Blank" in neighs:
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
-				if x == 0: # constrain -x
-					for proto in protos.duplicate():
-						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.nX]
-						if not "Blank" in neighs:
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
-				if z == worldsize.z - 1: # constrain +z
-					for proto in protos.duplicate():
-						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.nY]
-						if not "Blank" in neighs:
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
-				if z == 0: # constrain -z
-					for proto in protos.duplicate():
-						var neighs  = protos[proto][WFC.MESH_NEIGHBOURS][WFC.pY]
-						if not "Blank" in neighs:
-							protos.erase(proto)
-							if not coords in wfc.stack:
-								wfc.stack.append(coords)
+				
+				for proto in protos.duplicate():
+					var neighs = protos[proto][WFC.MESH_NEIGHBOURS]
+					var custom_constraint = protos[proto][WFC.CONSTRAIN_TO]
+					var custom_constraint_from = protos[proto][WFC.CONSTRAIN_FROM]
+				
+					var	erase_proto = (
+						(y == worldsize.y - 1 and not "Blank" in neighs[WFC.pZ]) or
+						(y > 0 and custom_constraint == WFC.CONSTRAINT_BOTTOM) or
+						(y < worldsize.y - 1 and custom_constraint == WFC.CONSTRAINT_TOP) or
+						(y == 0 and ((not "Blank" in neighs[WFC.nZ]) or (custom_constraint_from == WFC.CONSTRAINT_BOTTOM))) or
+						(x == worldsize.x - 1 and not "Blank" in neighs[WFC.pX]) or
+						(x == 0 and not "Blank" in neighs[WFC.nX]) or
+						(z == worldsize.z - 1 and not "Blank" in neighs[WFC.nY]) or
+						(z == 0 and not "Blank" in neighs[WFC.pY])
+					)
 
-	wfc.propagate(false)
-	
-func display_wavefunction():
+					if erase_proto:
+						protos.erase(proto)
+						if not coords in wfc.stack:
+							wfc.stack.append(coords)
+
+	wfc.propagate()
+
+# display the final wave function collapse result
+func display_wavefunction() -> void:
 	for x in range(worldsize.x):
 		for y in range(worldsize.y):
 			for z in range(worldsize.z):
 				
+				var cur_wavefunction = wfc.wavefunction[x][y][z]
+				
 				if len(wfc.wavefunction[x][y][z]) > 1:
 						continue
 						
-				for chunk in wfc.wavefunction[x][y][z]:
-					if wfc.wavefunction[x][y][z][chunk][wfc.MESH_LABEL] == 'Blank':
+				for chunk in cur_wavefunction:
+					
+					if cur_wavefunction[chunk][wfc.MESH_LABEL] == 'Blank':
 						continue
-					var mesh = init_mesh.instantiate()
-					meshes.append(mesh)
-					add_child(mesh)
-					mesh.mesh = load("res://Meshes/%s.res" % wfc.wavefunction[x][y][z][chunk][wfc.MESH_LABEL])
-					mesh.rotate_y((PI/2) * wfc.wavefunction[x][y][z][chunk][wfc.MESH_ROTATION])
-					mesh.position = Vector3(x, y, z)
+						
+					var mesh_instance = init_mesh.instantiate()
+					meshes.append(mesh_instance)
+					add_child(mesh_instance)
+					mesh_instance.mesh = load("res://Meshes/%s.res" % cur_wavefunction[chunk][wfc.MESH_LABEL])
+					mesh_instance.rotate_y((PI/2) * cur_wavefunction[chunk][wfc.MESH_ROTATION])
+					mesh_instance.position = Vector3(x, y, z)

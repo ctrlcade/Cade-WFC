@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c5ttg02y3l12c"
-path="res://.godot/imported/WFC-Chunks.glb-c162f24a57a2b32a8c19a573e58b1007.scn"
+uid="uid://dmkv8r7446vyf"
+path="res://.godot/imported/Boat.glb-cf6a6f9ce71c4f92c5b8eec091786260.scn"
 
 [deps]
 
-source_file="res://Meshes/WFC-Chunks.glb"
-dest_files=["res://.godot/imported/WFC-Chunks.glb-c162f24a57a2b32a8c19a573e58b1007.scn"]
+source_file="res://Meshes/Boat.glb"
+dest_files=["res://.godot/imported/Boat.glb-cf6a6f9ce71c4f92c5b8eec091786260.scn"]
 
 [params]
 
@@ -30,7 +30,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "meshes": {
-"WFC-Chunks_Cube002": {
+"Boat_Plane002": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
@@ -38,17 +38,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://Meshes/Grass.res"
-},
-"WFC-Chunks_Cube003": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
-"save_to_file/make_streamable": "",
-"save_to_file/path": "res://Meshes/Grass2.res"
+"save_to_file/path": "res://Meshes/Boat.res"
 }
 }
 }

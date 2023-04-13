@@ -1,6 +1,8 @@
+# Original implementation by Martin Donald: https://www.youtube.com/watch?v=2SuvO4Gi7uY
+# Modified by Cade Brown
+
 extends Node
 class_name WFC
-
 
 # constants for mesh properties
 const MESH_LABEL = "mesh_label"

@@ -1,11 +1,14 @@
+RichTextLabel
+Button
+MarginContainer
 MeshInstance3D
+AudioStreamPlayer
 RigidBody3D
 CharacterBody3D
 CollisionShape3D
 StaticBody3D
 VehicleBody3D
 Sprite2D
-Button
 VBoxContainer
 Label
 Label3D

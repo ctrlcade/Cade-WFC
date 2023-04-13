@@ -37,7 +37,7 @@ var ruleset : Dictionary = {
 	
 	"Grass_2": {
 		"mesh_label": "Flowers",
-		"mesh_rotation": 1,
+		"mesh_rotation": 0,
 		"constrain_to": "",
 		"constrain_from": "",
 		"mesh_weight": 1,
@@ -53,7 +53,7 @@ var ruleset : Dictionary = {
 	
 	"Grass_3": {
 		"mesh_label": "Flowers",
-		"mesh_rotation": 2,
+		"mesh_rotation": 1,
 		"constrain_to": "",
 		"constrain_from": "",
 		"mesh_weight": 1,
@@ -66,8 +66,6 @@ var ruleset : Dictionary = {
 			["Blank"]
 		]
 	},
-	
-
 	
 	"Slope_0": {
 		"mesh_label": "Slope",
@@ -272,9 +270,9 @@ var ruleset : Dictionary = {
 			["Slope_3", "Corner_2", "Corner_3", "Blank"],
 			["Slope_0", "Corner_0", "Corner_3", "Blank"],
 			["Slope_1", "Corner_0", "Corner_1", "Blank"],
-			["Grass_0", "Grass_1", "Slope_0", "Slope_1", "Slope_2", "Slope_3", "Corner_0", "Corner_1", 
+			["Grass_0", "Grass_1", "Grass_2", "Grass_3", "Slope_0", "Slope_1", "Slope_2", "Slope_3", "Corner_0", "Corner_1", 
 			"Corner_2", "Corner_3", "InCorner_0", "InCorner_1","InCorner_2", "InCorner_3", "Blank"],
-			["Grass_0", "Grass_1", "Slope_0", "Slope_1", "Slope_2", "Slope_3", "Corner_0", "Corner_1",
+			["Grass_0", "Grass_1", "Grass_2", "Grass_3", "Slope_0", "Slope_1", "Slope_2", "Slope_3", "Corner_0", "Corner_1",
 			"Corner_2", "Corner_3", "InCorner_0", "InCorner_1", "InCorner_2", "InCorner_3", "Blank"]
 		]
 	}

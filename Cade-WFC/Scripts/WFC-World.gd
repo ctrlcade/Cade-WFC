@@ -1,21 +1,29 @@
+# Original implementation by Martin Donald: https://www.youtube.com/watch?v=2SuvO4Gi7uY
+# Modified by Cade Brown
+
 extends Node3D
 
-const worldsize = Vector3(8, 1, 8)
+const worldsize = Vector3(10, 1, 10)
 const init_mesh = preload("res://Scenes/Mesh.tscn")
 
 var rules = WFCRules.new()
 var wfc : WFC
 var meshes : Array = []
 
-# generate wave function collapse world at startup
+# generate wave function collapse world at startup, and hide cursor
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	generate()
 	
-# check for input to regenerate the world during runtime, SPACEBAR to regen
+# check for input to regenerate the world during runtime, SPACEBAR to regen, ESC to quit
 func _process(_delta : float) -> void:
-	if(Input.is_action_just_pressed("generate_world")):
+	
+	if(Input.is_action_just_pressed("Generate")):
 		reset_world()
 		generate()
+		
+	if Input.is_action_just_pressed("Quit"):
+		get_tree().quit()
 
 # generate the wave function collapse world
 func generate() -> void:

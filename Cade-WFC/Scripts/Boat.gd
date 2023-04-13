@@ -1,19 +1,23 @@
 extends RigidBody3D
 
 # defining boat movement properties
-@export var speed: float = 1.0
-@export var acceleration: float = 3.0
-@export var deceleration: float = 0.1
+@export var speed: float = 3.0
+@export var acceleration: float = 5.0
+@export var deceleration: float = 0.01
 var direction = Vector3.ZERO
 
 # ref to the camera within the WFC-World scene
-@onready var camera = get_node("/root/WFC-World/World/Camera3D") as Camera3D
+@onready var camera = get_node("/root/WFC-World/Camera/Camera3D") as Camera3D
+
+
+@onready var world = get_node("/root/WFC-World").get("worldsize")
 
 func _process(_delta):
 	
 	# reset boat position when 'generate_world' is pressed (SPACEBAR)
-	if(Input.is_action_just_pressed("generate_world")):
-		global_transform.origin = Vector3(8,0,5)
+	if(Input.is_action_just_pressed("Generate")):
+		global_transform.origin = world - Vector3(0, 1, 0)
+		
 
 func _physics_process(delta: float) -> void:
 	movement()

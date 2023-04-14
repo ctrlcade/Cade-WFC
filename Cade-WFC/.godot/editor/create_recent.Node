@@ -1,7 +1,12 @@
-RichTextLabel
+Label
+Control
+CanvasLayer
 Button
 MarginContainer
+RichTextLabel
+GridMap
 MeshInstance3D
+Camera3D
 AudioStreamPlayer
 RigidBody3D
 CharacterBody3D
@@ -10,5 +15,4 @@ StaticBody3D
 VehicleBody3D
 Sprite2D
 VBoxContainer
-Label
 Label3D

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://btcqfuc85v8lt"]
+
+[ext_resource type="FontFile" uid="uid://lf8sny3sktaw" path="res://Fonts/ShortStack-Regular.ttf" id="1_vlusb"]
+
+[sub_resource type="Theme" id="Theme_wy5uy"]
+RichTextLabel/colors/default_color = Color(1, 1, 1, 0.678431)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/font_sizes/normal_font_size = 50
+RichTextLabel/fonts/normal_font = ExtResource("1_vlusb")
+
+[node name="WFC-Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Load_UI" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -350.0
+offset_right = 375.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadLabel" type="RichTextLabel" parent="Load_UI"]
+layout_mode = 2
+theme = SubResource("Theme_wy5uy")
+bbcode_enabled = true
+text = "LOADING"

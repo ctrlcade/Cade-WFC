@@ -2,6 +2,7 @@ extends RigidBody3D
 
 # defining boat movement properties
 @export var speed: float = 3.0
+@export var rotation_speed: float = 10
 @export var acceleration: float = 5.0
 @export var deceleration: float = 0.01
 var direction = Vector3.ZERO
@@ -9,24 +10,25 @@ var direction = Vector3.ZERO
 # ref to the camera within the WFC-World scene
 @onready var camera = get_node("/root/WFC-World/Camera/Camera3D") as Camera3D
 
-
-@onready var world = get_node("/root/WFC-World").get("worldsize")
+# ref to world node
+@onready var world = get_node("/root/WFC-World")
 
 func _process(_delta):
 	
 	# reset boat position when 'generate_world' is pressed (SPACEBAR)
 	if(Input.is_action_just_pressed("Generate")):
-		global_transform.origin = world - Vector3(0, 1, 0)
 		
+		# ensure boat is grounded and spawns outside the world limit
+		var worldsize = world.get("worldsize")
+		global_transform.origin = worldsize - Vector3.UP
 
 func _physics_process(delta: float) -> void:
 	movement()
 	forces(delta)
-	rotate_boat()
+	rotate_boat(delta)
 
 # calculates the desired movement direction
 func movement() -> void:
-	
 	direction = Vector3(
 		Input.get_action_strength("Right") - Input.get_action_strength("Left"),
 		0,
@@ -44,7 +46,8 @@ func forces(_delta: float) -> void:
 	apply_central_force((direction * speed) * acceleration_amount)
 
 # rotate the boat to face the direction of movement
-func rotate_boat() -> void:
+func rotate_boat(delta: float) -> void:
 	var target_position = global_transform.origin + linear_velocity
 	if !global_transform.origin.is_equal_approx(target_position):
-		look_at(target_position, Vector3.UP)
+		var target_rotation = global_transform.looking_at(target_position, Vector3.UP)
+		global_transform.basis = global_transform.basis.slerp(target_rotation.basis, rotation_speed * delta)

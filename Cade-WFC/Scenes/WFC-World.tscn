@@ -7,30 +7,24 @@
 [ext_resource type="Script" path="res://Scripts/FPS-Count.gd" id="5_jolt1"]
 [ext_resource type="Script" path="res://Scripts/Boat.gd" id="6_o0b40"]
 [ext_resource type="ArrayMesh" uid="uid://b25ry0b45mxbt" path="res://Meshes/Boat.res" id="7_swb63"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnu6r"]
-render_priority = 0
-shader = ExtResource("2_cfu1s")
-shader_parameter/ColorParameter = Color(0.176471, 0.560784, 1, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_3g4s3"]
-material = SubResource("ShaderMaterial_pnu6r")
-size = Vector2(85, 85)
-subdivide_width = 10
-subdivide_depth = 10
+[ext_resource type="Script" path="res://Scripts/Worldsize-UI.gd" id="8_npfku"]
 
 [sub_resource type="Environment" id="Environment_7n7gy"]
 background_mode = 1
 background_color = Color(0.882353, 0.556863, 0.658824, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4stdv"]
-font = ExtResource("4_k06ny")
-font_size = 32
-font_color = Color(1, 1, 1, 0.678431)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjbrq"]
+render_priority = 0
+shader = ExtResource("2_cfu1s")
+shader_parameter/ColorParameter = Color(0.176471, 0.560784, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3g4s3"]
+material = SubResource("ShaderMaterial_mjbrq")
+size = Vector2(140, 140)
+subdivide_width = 10
+subdivide_depth = 10
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uovxv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_d1d4s"]
 
 [sub_resource type="Theme" id="Theme_gar2o"]
 RichTextLabel/colors/default_color = Color(1, 1, 1, 0.678431)
@@ -38,8 +32,16 @@ RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/font_sizes/normal_font_size = 50
 RichTextLabel/fonts/normal_font = ExtResource("4_k06ny")
 
+[sub_resource type="LabelSettings" id="LabelSettings_4stdv"]
+font = ExtResource("4_k06ny")
+font_size = 48
+font_color = Color(1, 1, 1, 0.678431)
+
 [node name="WFC-World" type="Node3D"]
 script = ExtResource("1_pxpss")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7n7gy")
 
 [node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.174387, -0.740723, 0.648783, 0.192275, 0.671811, 0.715333, -0.965722, -2.98023e-08, 0.259578, 0, 0, 0)
@@ -53,20 +55,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4)
 script = ExtResource("3_hb0jg")
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.547592, 0.836745, 0, -0.836745, 0.547592, 0, 9, 8.5)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9, 8)
 fov = 70.0
 far = 100.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7n7gy")
-
-[node name="FPS_Count" type="Label" parent="."]
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 44.0
-offset_bottom = 25.0
-label_settings = SubResource("LabelSettings_4stdv")
-script = ExtResource("5_jolt1")
 
 [node name="Boat" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
@@ -83,55 +74,50 @@ mesh = ExtResource("7_swb63")
 transform = Transform3D(-0.385672, 0, 0.459627, 0, 0.6, 0, -0.459627, 0, -0.385672, 0, 0, 0)
 shape = SubResource("SphereShape3D_uovxv")
 
-[node name="Wall_1" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 40, -10, 2.5, 5)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall_1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_1/StaticBody3D"]
-shape = SubResource("BoxShape3D_d1d4s")
-
-[node name="Wall_2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-07, 0, -40, 0, 10, 0, 10, 0, -1.74846e-06, 5, 2.5, -10)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall_2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_2/StaticBody3D"]
-shape = SubResource("BoxShape3D_d1d4s")
-
-[node name="Wall_3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-10, 0, -6.03983e-06, 0, 10, 0, 1.50996e-06, 0, -40, 20, 2.5, 5)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall_3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_3/StaticBody3D"]
-shape = SubResource("BoxShape3D_d1d4s")
-
-[node name="Wall_4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-07, 0, 40, 0, 10, 0, -10, 0, -1.74846e-06, 5, 2.5, 17.5)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall_4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_4/StaticBody3D"]
-shape = SubResource("BoxShape3D_d1d4s")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Control_UI" type="MarginContainer" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -448.0
-offset_right = 710.0
-offset_bottom = 52.0
+offset_top = -623.0
+offset_right = 760.0
+offset_bottom = 77.0
 grow_vertical = 0
 
-[node name="ControlLabel" type="RichTextLabel" parent="MarginContainer"]
+[node name="ControlLabel" type="RichTextLabel" parent="Control_UI"]
 layout_mode = 2
 theme = SubResource("Theme_gar2o")
 text = "CONTROLS
-W - Forward
-A - Left
-S - Back
-D - Right
-SPACE - Regenerate
-Arrow Keys - Camera"
+W - Boat forward
+A - Boat left
+S - Boat back
+D - Boat right
+Spacebar - Regenerate
+Arrow Keys - Camera
+Ctrl + X/Z - Grow world
+Shift + X/Z - Shrink world
+Escape - Quit"
+
+[node name="WorldInfo_UI" type="MarginContainer" parent="."]
+layout_direction = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1010.0
+offset_right = -10.0
+offset_bottom = 500.0
+grow_horizontal = 0
+
+[node name="WorldInfo" type="RichTextLabel" parent="WorldInfo_UI"]
+layout_mode = 2
+theme = SubResource("Theme_gar2o")
+bbcode_enabled = true
+script = ExtResource("8_npfku")
+
+[node name="FPS_Count" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 62.0
+label_settings = SubResource("LabelSettings_4stdv")
+script = ExtResource("5_jolt1")

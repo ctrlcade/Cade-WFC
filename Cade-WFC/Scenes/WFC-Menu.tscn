@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://xmwbhbcjx634"]
+
+[ext_resource type="Script" path="res://Scripts/WFC-Menu.gd" id="1_ip36t"]
+[ext_resource type="Shader" uid="uid://b2qi6l4gw47mm" path="res://Shaders/Water.tres" id="1_q3xrf"]
+[ext_resource type="Theme" uid="uid://den2ske8c8dx7" path="res://Themes/MenuTheme.theme" id="2_2tgjy"]
+[ext_resource type="FontFile" uid="uid://lf8sny3sktaw" path="res://Fonts/ShortStack-Regular.ttf" id="2_fjtyx"]
+[ext_resource type="ArrayMesh" uid="uid://b25ry0b45mxbt" path="res://Meshes/Boat.res" id="5_dbldt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnu6r"]
+render_priority = 0
+shader = ExtResource("1_q3xrf")
+shader_parameter/ColorParameter = Color(0.176471, 0.560784, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e0g8c"]
+material = SubResource("ShaderMaterial_pnu6r")
+size = Vector2(140, 140)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="Gradient" id="Gradient_541q2"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.890184, 0.994015, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2bpoi"]
+gradient = SubResource("Gradient_541q2")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fqq17"]
+panorama = SubResource("GradientTexture2D_2bpoi")
+
+[sub_resource type="Sky" id="Sky_gl5o1"]
+sky_material = SubResource("PanoramaSkyMaterial_fqq17")
+
+[sub_resource type="Environment" id="Environment_whlmy"]
+background_mode = 2
+background_color = Color(0.882353, 0.556863, 0.658824, 1)
+sky = SubResource("Sky_gl5o1")
+glow_strength = 1.57
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dgb0"]
+shading_mode = 0
+albedo_color = Color(1, 0.717647, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c02qo"]
+material = SubResource("StandardMaterial3D_7dgb0")
+
+[node name="WFC-Menu" type="Node3D"]
+script = ExtResource("1_ip36t")
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+mesh = SubResource("PlaneMesh_e0g8c")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.174387, -0.740723, 0.648783, 0.192275, 0.671811, 0.715333, -0.965722, -2.00809e-09, 0.259578, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_whlmy")
+
+[node name="Sun" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 10, -100)
+mesh = SubResource("SphereMesh_c02qo")
+skeleton = NodePath("../Light")
+
+[node name="TitleCard" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -674.0
+offset_right = 500.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="TitleCard"]
+layout_mode = 2
+theme = ExtResource("2_2tgjy")
+theme_override_fonts/normal_font = ExtResource("2_fjtyx")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center]SUPERPOSTION SEAS[/center]"
+
+[node name="Author" type="RichTextLabel" parent="TitleCard"]
+layout_mode = 2
+theme = ExtResource("2_2tgjy")
+theme_override_fonts/normal_font = ExtResource("2_fjtyx")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]
+
+A Tech Demo by Cade Brown[/center]"
+
+[node name="Start" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -274.0
+offset_right = 119.0
+offset_bottom = -194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2tgjy")
+text = "START"
+
+[node name="Exit" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -174.0
+offset_right = 119.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2tgjy")
+text = "EXIT
+"
+
+[node name="Boat" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 0, 0, -21.941)
+mesh = ExtResource("5_dbldt")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

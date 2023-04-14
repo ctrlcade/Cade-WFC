@@ -50,7 +50,6 @@ func init(worldsize : Vector3, meshes : Dictionary) -> void:
 			y.append(z)
 		wavefunction.append(y)
 
-
 # check if the wave function has collapsed (all cells have a single possible state)
 func collapsed() -> bool:
 	for x in wavefunction:
@@ -123,7 +122,7 @@ func iterate() -> void:
 	
 # propagate constraints throughout the wavefunction
 func propagate(coordinates : Vector3 = Vector3.ZERO) -> void:
-	if coordinates:
+	if coordinates != null:
 		stack.append(coordinates)
 	while !stack.is_empty():
 		var current_coordinates = stack.pop_back()

@@ -1,4 +1,4 @@
-res://Scenes/WFC-World.tscn
+res://Scenes/WFC-Mesh.tscn
 res://Materials/Grass.material
 res://Materials/Beach.material
 res://Meshes/Corner.res
@@ -6,4 +6,6 @@ res://Shaders/Water.tres
 res://Materials/Sail.material
 res://Materials/Mast.material
 res://Meshes/Boat.res
-res://Scenes/Mesh.tscn
+res://Scenes/WFC-World.tscn
+res://Scenes/WFC-Loading.tscn
+res://Scenes/WFC-Menu.tscn

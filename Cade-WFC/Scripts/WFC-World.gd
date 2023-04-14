@@ -93,14 +93,9 @@ func apply_custom_constraints() -> void:
 				
 				for proto in protos.duplicate():
 					var neighs = protos[proto][WFC.MESH_NEIGHBOURS]
-					var custom_constraint = protos[proto][WFC.CONSTRAIN_TO]
-					var custom_constraint_from = protos[proto][WFC.CONSTRAIN_FROM]
 				
+					# ensure that world boundaries have the appropriate meshes
 					var	erase_proto = (
-						(y == worldsize.y - 1 and not "Blank" in neighs[WFC.pZ]) or
-						(y > 0 and custom_constraint == WFC.CONSTRAINT_BOTTOM) or
-						(y < worldsize.y - 1 and custom_constraint == WFC.CONSTRAINT_TOP) or
-						(y == 0 and ((not "Blank" in neighs[WFC.nZ]) or (custom_constraint_from == WFC.CONSTRAINT_BOTTOM))) or
 						(x == worldsize.x - 1 and not "Blank" in neighs[WFC.pX]) or
 						(x == 0 and not "Blank" in neighs[WFC.nX]) or
 						(z == worldsize.z - 1 and not "Blank" in neighs[WFC.nY]) or

@@ -10,12 +10,6 @@ const MESH_ROTATION = "mesh_rotation"
 const MESH_NEIGHBOURS = "mesh_neighbours"
 const MESH_WEIGHT = "mesh_weight" 
 
-# constants for constraint properties
-const CONSTRAIN_TO = "constrain_to"
-const CONSTRAIN_FROM = "constrain_from"
-const CONSTRAINT_BOTTOM = "bot"
-const CONSTRAINT_TOP = "top"
-
 # constants for directions
 const pX = 0
 const pY = 1

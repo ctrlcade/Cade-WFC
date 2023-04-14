@@ -6,8 +6,6 @@ var ruleset : Dictionary = {
 	"Grass_0": {
 		"mesh_label": "Grass",
 		"mesh_rotation": 0,
-		"constrain_to": "",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Grass_0", "Grass_1", "Grass_2", "Grass_3", "Slope_0", "InCorner_0", "InCorner_3"],
@@ -22,8 +20,6 @@ var ruleset : Dictionary = {
 	"Grass_1": {
 		"mesh_label": "Tree",
 		"mesh_rotation": 0,
-		"constrain_to": "",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Grass_0", "Slope_0", "InCorner_0", "InCorner_3"],
@@ -38,8 +34,6 @@ var ruleset : Dictionary = {
 	"Grass_2": {
 		"mesh_label": "Flowers",
 		"mesh_rotation": 0,
-		"constrain_to": "",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Grass_0", "Grass_1", "Grass_3", "Slope_0", "InCorner_0", "InCorner_3"],
@@ -54,8 +48,6 @@ var ruleset : Dictionary = {
 	"Grass_3": {
 		"mesh_label": "Flowers",
 		"mesh_rotation": 1,
-		"constrain_to": "",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Grass_0", "Grass_1", "Grass_2", "Slope_0", "InCorner_0", "InCorner_3"],
@@ -70,8 +62,6 @@ var ruleset : Dictionary = {
 	"Slope_0": {
 		"mesh_label": "Slope",
 		"mesh_rotation": 0,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Blank"],
@@ -86,8 +76,6 @@ var ruleset : Dictionary = {
 	"Slope_1": {
 		"mesh_label": "Slope",
 		"mesh_rotation": 1,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Slope_1", "Corner_0", "InCorner_1"],
@@ -102,8 +90,6 @@ var ruleset : Dictionary = {
 	"Slope_2": {
 		"mesh_label": "Slope",
 		"mesh_rotation": 2,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Grass_0", "Grass_1", "Grass_2", "Grass_3", "Slope_0", "InCorner_0", "InCorner_3"],
@@ -118,8 +104,6 @@ var ruleset : Dictionary = {
 	"Slope_3": {
 		"mesh_label": "Slope",
 		"mesh_rotation": 3,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Slope_3", "Corner_3", "InCorner_2"],
@@ -134,8 +118,6 @@ var ruleset : Dictionary = {
 	"Corner_0": {
 		"mesh_label": "Corner",
 		"mesh_rotation": 0,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Blank"],
@@ -150,8 +132,6 @@ var ruleset : Dictionary = {
 	"Corner_1": {
 		"mesh_label": "Corner",
 		"mesh_rotation": 1,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Slope_1", "Corner_0", "InCorner_1"],
@@ -166,8 +146,6 @@ var ruleset : Dictionary = {
 	"Corner_2": {
 		"mesh_label": "Corner",
 		"mesh_rotation": 2,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Slope_3", "Corner_3", "InCorner_2"],
@@ -182,8 +160,6 @@ var ruleset : Dictionary = {
 	"Corner_3": {
 		"mesh_label": "Corner",
 		"mesh_rotation": 3,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Blank"],
@@ -198,8 +174,6 @@ var ruleset : Dictionary = {
 	"InCorner_0": {
 		"mesh_label": "InCorner",
 		"mesh_rotation": 0,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Slope_1","Corner_0", "InCorner_1"],
@@ -214,8 +188,6 @@ var ruleset : Dictionary = {
 	"InCorner_1": {
 		"mesh_label": "InCorner",
 		"mesh_rotation": 1,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Grass_0", "Grass_1", "Grass_2", "Grass_3", "Slope_0", "InCorner_0", "InCorner_3"],
@@ -230,8 +202,6 @@ var ruleset : Dictionary = {
 	"InCorner_2": {
 		"mesh_label": "InCorner",
 		"mesh_rotation": 2,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Grass_0", "Grass_1", "Grass_2", "Grass_3", "Slope_0", "InCorner_0", "InCorner_3"],
@@ -246,8 +216,6 @@ var ruleset : Dictionary = {
 	"InCorner_3": {
 		"mesh_label": "InCorner",
 		"mesh_rotation": 3,
-		"constrain_to": "bot",
-		"constrain_from": "",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Slope_3", "Corner_3", "InCorner_2"],
@@ -262,8 +230,6 @@ var ruleset : Dictionary = {
 	"Blank": {
 		"mesh_label": "Blank",
 		"mesh_rotation": 0,
-		"constrain_to": "-1",
-		"constrain_from": "-1",
 		"mesh_weight": 1,
 		"mesh_neighbours": [
 			["Slope_2", "Corner_1", "Corner_2", "Blank"],

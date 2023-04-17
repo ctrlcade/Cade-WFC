@@ -4,7 +4,7 @@ extends RichTextLabel
 var gen_time = ""
 
 # provides player with world-based information
-func _process(_delta):
+func _process(_delta : float) -> void:
 	var worldsize = world.worldsize
 	set_text("[right]WORLDSIZE\n" 
 		+ "X: %s Y: %s Z: %s\n" % [worldsize.x, worldsize.y, worldsize.z]

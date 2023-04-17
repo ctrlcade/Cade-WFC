@@ -1,4 +1,4 @@
-res://Scenes/WFC-Menu.tscn
+res://Scenes/WFC-Mesh.tscn
 res://Materials/Grass.material
 res://Materials/Beach.material
 res://Meshes/Corner.res
@@ -6,11 +6,14 @@ res://Shaders/Water.tres
 res://Materials/Sail.material
 res://Materials/Mast.material
 res://Meshes/Boat.res
-res://Scripts/WFC-Rules.gd
-res://Scenes/WFC-Mesh.tscn
 res://Scenes/WFC-World.tscn
 res://Scenes/WFC-Loading.tscn
+res://Scenes/WFC-Menu.tscn
+res://Scripts/CameraRot.gd
 res://Scripts/WFC-World.gd
-res://Meshes/CliffBottomCorner.res
-res://Meshes/InCorner.res
+res://Scripts/WFC-Menu.gd
+res://Scripts/Mesh.gd
+res://Scripts/FPS-Count.gd
+res://Scripts/Boat.gd
 res://Scripts/WFC.gd
+res://Scripts/Worldsize-UI.gd

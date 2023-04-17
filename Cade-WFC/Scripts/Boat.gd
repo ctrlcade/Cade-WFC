@@ -13,7 +13,7 @@ var direction = Vector3.ZERO
 # ref to world node
 @onready var world = get_node("/root/WFC-World")
 
-func _process(_delta):
+func _process(_delta : float) -> void:
 	
 	# reset boat position when 'generate_world' is pressed (SPACEBAR)
 	if(Input.is_action_just_pressed("Generate")):

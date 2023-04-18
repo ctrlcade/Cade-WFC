@@ -1,4 +1,7 @@
 # Cade-WFC - Superposition Seas
+
+<img src="Cade-WFC/GameScreenshot.png" width="500"/>
+
 Wave Function Collapse 3D within Godot 4. Originally implemented by Martin Donald, modified and adapted by Cade Brown as part of their Heriot Watt 4th Year Undergraduate Honours Project.
 
 The tech can be played in brower at itch.io - https://ctrlcade.itch.io/superposition-seas, password is "cade" 

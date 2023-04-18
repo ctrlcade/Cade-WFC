@@ -84,7 +84,7 @@ theme = ExtResource("2_2tgjy")
 theme_override_fonts/normal_font = ExtResource("2_fjtyx")
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
-text = "[center]SUPERPOSTION SEAS[/center]"
+text = "[center]SUPERPOSITION SEAS[/center]"
 
 [node name="Author" type="RichTextLabel" parent="TitleCard"]
 layout_mode = 2

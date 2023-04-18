@@ -8,7 +8,7 @@ The tech can be played in brower at itch.io - https://ctrlcade.itch.io/superposi
 
 **NOTE:** Some technical issues restrict it from being playable on MacOS, Safari or Firefox, these are not caused by the implementation itself however. Google Chrome and Microsoft Edge seem to be able to play it on a Windows OS, I have not tested this with a Unix-based OS or anything else so your milage may vary. There are also some unintentional graphical issues within the playable demo (e.g. boat missing sail), likely a rendering engine issue. I would have created an executable of the tech demo but I do not have access to a Windows OS with Godot as this was developed within macOS.
 
-A video demonstration of the tech demo is available - 
+A video demonstration of the tech demo is available - https://www.youtube.com/watch?v=5uF-9YGcn74
 
 # Tools
 
